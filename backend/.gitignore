@@ -5,3 +5,4 @@ node_modules
 # Ignore build artifacts
 ./package.json
 /generated/prisma
+./package-lock.json
