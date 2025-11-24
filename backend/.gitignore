@@ -1,5 +1,7 @@
 node_modules
 # Keep environment variables out of version control
 .env
-
+./package-lock.json
+# Ignore build artifacts
+./package.json
 /generated/prisma
