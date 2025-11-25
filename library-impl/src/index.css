@@ -1,0 +1,14 @@
+body {
+  font-family: Arial, sans-serif;
+  background: #fafafa;
+}
+button {
+  cursor: pointer;
+}
+table {
+  border-collapse: collapse;
+}
+th, td {
+  padding: 10px;
+  border: 1px solid #ddd;
+}
