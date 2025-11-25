@@ -30,10 +30,10 @@ model Book {
   id       Int    @id @default(autoincrement())
   title    String
   isbn     String @unique
-
+  genreId Int
   authorId Int
   //We removed genreId because the foreign key restricts a book to linking to only one genre 
   // which violates the requirement for a many-to-many relationship.
   author   Author @relation(fields: [authorId], references: [id])
-  genre    Genre[]
+  genre   Genre  @relation(fields: [genreId], references: [id])
 }
