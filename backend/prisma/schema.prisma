@@ -1,3 +1,9 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
 generator client {
   provider = "prisma-client-js"
   output   = "../generated/prisma"
@@ -13,21 +19,21 @@ model Author {
   books Book[]
 }
 
+//i want this to many-many relationship with books
 model Genre {
   id    Int    @id @default(autoincrement())
   name  String
   books Book[]
 }
-
+//this is one-many relationship 
 model Book {
   id       Int    @id @default(autoincrement())
   title    String
   isbn     String @unique
-  authorId Int
-  genreId  Int
-  author   Author @relation(fields: [authorId], references: [id])
-  genre    Genre  @relation(fields: [genreId], references: [id])
 
-  @@index([authorId], map: "Book_authorId_fkey")
-  @@index([genreId], map: "Book_genreId_fkey")
+  authorId Int
+  //We removed genreId because the foreign key restricts a book to linking to only one genre 
+  // which violates the requirement for a many-to-many relationship.
+  author   Author @relation(fields: [authorId], references: [id])
+  genre    Genre[]
 }
