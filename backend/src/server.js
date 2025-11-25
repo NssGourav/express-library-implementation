@@ -17,40 +17,17 @@ app.get('/books', async (req, res) => {
         genres: true
       }
     });
+    const simplifiedBooks = books.map(book => ({
+      id: book.id,
+      title: book.title,
+      isbn: book.isbn,
+      author: book.author?.name || '',
+      genre: book.genres.map(g => g.name).join(', ') || ''
+    }));
 
-    res.json(books);
+    res.json(simplifiedBooks);
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: "Failed to fetch books" });
   }
-});
-
-app.post('/books', async (req, res) => {
-  const { title, isbn, authorId, genreIds } = req.body;
-
-  try {
-    const newBook = await prisma.book.create({
-      data: {
-        title,
-        isbn,
-        authorId,
-        genres: {
-          connect: genreIds.map(id => ({ id }))
-        }
-      },
-      include: {
-        genres: true
-      }
-    });
-
-    res.json(newBook);
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: "Failed to create book" });
-  }
-});
-
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
 });
