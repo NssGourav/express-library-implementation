@@ -10,6 +10,7 @@ export default function App() {
   });
   const [editingId, setEditingId] = useState(null);
   const API_URL = "http://localhost:3000/books";
+
   useEffect(() => {
     fetchBooks();
   }, []);
@@ -72,7 +73,7 @@ export default function App() {
           value={formData.title}
           onChange={handleChange}
           required
-        /><br/><br/>
+        /><br /><br />
 
         <input
           type="text"
@@ -81,7 +82,7 @@ export default function App() {
           value={formData.author}
           onChange={handleChange}
           required
-        /><br/><br/>
+        /><br /><br />
 
         <input
           type="number"
@@ -90,7 +91,7 @@ export default function App() {
           value={formData.isbn}
           onChange={handleChange}
           required
-        /><br/><br/>
+        /><br /><br />
 
         <select name="genre" value={formData.genre} onChange={handleChange} required>
           <option value="">Select Genre</option>
@@ -100,7 +101,7 @@ export default function App() {
           <option value="History">History</option>
         </select>
 
-        <br/><br/>
+        <br /><br />
 
         <button type="submit">
           {editingId ? "Update Book" : "Add Book"}
